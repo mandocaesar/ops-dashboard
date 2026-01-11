@@ -1,0 +1,8 @@
+{
+  "name": "OpsCommander",
+  "description": "Enterprise-grade SRE Incident Management Platform featuring War Rooms, On-Call Scheduling, and Observability Dashboards.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
