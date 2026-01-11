@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import { ViewState, User } from './types';
-import { Sidebar, Header } from './components/Navigation';
-import { DashboardView } from './components/DashboardView';
-import { WarRoom } from './components/WarRoom';
-import { IncidentsView } from './components/IncidentsView';
-import { ServicesView } from './components/ServicesView';
-import { OnCallView } from './components/OnCallView';
-import { SettingsView } from './components/SettingsView';
+import { ViewState, User } from './lib/types';
+import { Sidebar, Header } from './components/layout/shell';
+
+// Route Imports (Simulating Next.js pages)
+import DashboardPage from './app/dashboard/page';
+import WarRoomPage from './app/war-room/page';
+import IncidentsPage from './app/incidents/page';
+import ServicesPage from './app/services/page';
+import OnCallPage from './app/on-call/page';
+import SettingsPage from './app/settings/page';
 
 const MOCK_USER: User = {
   id: 'u1',
@@ -21,19 +23,19 @@ const App: React.FC = () => {
   const renderContent = () => {
     switch (currentView) {
       case ViewState.DASHBOARD:
-        return <DashboardView onJoinWarRoom={() => setView(ViewState.WAR_ROOM)} />;
+        return <DashboardPage onJoinWarRoom={() => setView(ViewState.WAR_ROOM)} />;
       case ViewState.WAR_ROOM:
-        return <WarRoom />;
+        return <WarRoomPage />;
       case ViewState.INCIDENTS:
-        return <IncidentsView onJoinWarRoom={() => setView(ViewState.WAR_ROOM)} />;
+        return <IncidentsPage onJoinWarRoom={() => setView(ViewState.WAR_ROOM)} />;
       case ViewState.SERVICES:
-        return <ServicesView />;
+        return <ServicesPage />;
       case ViewState.ON_CALL:
-        return <OnCallView />;
+        return <OnCallPage />;
       case ViewState.SETTINGS:
-        return <SettingsView />;
+        return <SettingsPage />;
       default:
-        return <DashboardView onJoinWarRoom={() => setView(ViewState.WAR_ROOM)} />;
+        return <DashboardPage onJoinWarRoom={() => setView(ViewState.WAR_ROOM)} />;
     }
   };
 

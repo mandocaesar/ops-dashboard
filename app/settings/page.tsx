@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SettingsView: React.FC = () => {
+const SettingsPage: React.FC = () => {
   return (
     <div className="p-8 flex-1 bg-[#111418] flex items-center justify-center text-[#9dabb9]">
       <div className="text-center">
@@ -10,3 +10,5 @@ export const SettingsView: React.FC = () => {
     </div>
   );
 };
+
+export default SettingsPage;

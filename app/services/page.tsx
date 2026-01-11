@@ -1,4 +1,5 @@
 import React from 'react';
+import { useServices } from '../../hooks/use-ops-data';
 
 const ServiceCard = ({ name, region, status, latency, errorRate, uptime }: any) => (
   <div className="bg-[#1c232b] border border-[#3b4754] rounded-lg p-5 flex flex-col gap-4 hover:border-primary/50 transition-colors">
@@ -42,20 +43,33 @@ const ServiceCard = ({ name, region, status, latency, errorRate, uptime }: any) 
   </div>
 );
 
-export const ServicesView: React.FC = () => {
+const ServicesPage: React.FC = () => {
+  const { services, loading } = useServices();
+
   return (
     <div className="p-6 lg:p-8 flex-1 overflow-y-auto bg-[#111418]">
       <div className="max-w-[1600px] mx-auto">
         <h2 className="text-white text-xl font-bold mb-6">Service Catalog</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          <ServiceCard name="Payments API" region="us-east-1" status="Operational" latency="45ms" errorRate="0.02%" uptime="99.99%" />
-          <ServiceCard name="Auth Service" region="global" status="Operational" latency="12ms" errorRate="0.00%" uptime="100%" />
-          <ServiceCard name="Search Indexer" region="us-west-2" status="Degraded" latency="850ms" errorRate="2.4%" uptime="99.5%" />
-          <ServiceCard name="Frontend App" region="global" status="Operational" latency="120ms" errorRate="0.1%" uptime="99.9%" />
-          <ServiceCard name="Notification Svc" region="eu-central-1" status="Operational" latency="65ms" errorRate="0.01%" uptime="99.95%" />
-          <ServiceCard name="Inventory DB" region="us-east-1" status="Operational" latency="5ms" errorRate="0.00%" uptime="100%" />
-        </div>
+        {loading ? (
+           <p className="text-gray-500">Loading services...</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {services.map(s => (
+              <ServiceCard 
+                key={s.id} 
+                name={s.name} 
+                region={s.region} 
+                status={s.status} 
+                latency={s.latency} 
+                errorRate={s.errorRate} 
+                uptime={s.uptime} 
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 };
+
+export default ServicesPage;

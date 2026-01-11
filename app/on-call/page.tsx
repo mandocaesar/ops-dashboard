@@ -1,4 +1,5 @@
 import React from 'react';
+import { useOnCall } from '../../hooks/use-ops-data';
 
 const OnCallCard = ({ team, primary, secondary, nextRotation }: any) => (
   <div className="bg-[#1c232b] border border-[#3b4754] rounded-lg p-5">
@@ -11,7 +12,7 @@ const OnCallCard = ({ team, primary, secondary, nextRotation }: any) => (
       <div className="flex items-center gap-3">
         <div className="w-10 text-xs font-bold text-primary uppercase tracking-wider text-right">Pri</div>
         <div className="flex items-center gap-3 flex-1 bg-[#283039] p-2 rounded-lg border border-[#3b4754]">
-          <div className="size-8 rounded-full bg-cover" style={{backgroundImage: `url(${primary.avatar})`}}></div>
+          <div className="size-8 rounded-full bg-cover" style={{backgroundImage: `url(${primary.avatarUrl})`}}></div>
           <div>
             <p className="text-white text-sm font-medium">{primary.name}</p>
             <p className="text-[#9dabb9] text-xs">Until {primary.until}</p>
@@ -25,7 +26,7 @@ const OnCallCard = ({ team, primary, secondary, nextRotation }: any) => (
       <div className="flex items-center gap-3">
         <div className="w-10 text-xs font-bold text-text-secondary uppercase tracking-wider text-right">Sec</div>
         <div className="flex items-center gap-3 flex-1 bg-[#283039]/50 p-2 rounded-lg border border-[#3b4754] border-dashed">
-          <div className="size-8 rounded-full bg-cover grayscale opacity-70" style={{backgroundImage: `url(${secondary.avatar})`}}></div>
+          <div className="size-8 rounded-full bg-cover grayscale opacity-70" style={{backgroundImage: `url(${secondary.avatarUrl})`}}></div>
           <div>
             <p className="text-gray-300 text-sm font-medium">{secondary.name}</p>
             <p className="text-[#9dabb9] text-xs">Until {secondary.until}</p>
@@ -43,7 +44,9 @@ const OnCallCard = ({ team, primary, secondary, nextRotation }: any) => (
   </div>
 );
 
-export const OnCallView: React.FC = () => {
+const OnCallPage: React.FC = () => {
+  const { shifts, loading } = useOnCall();
+
   return (
     <div className="p-6 lg:p-8 flex-1 overflow-y-auto bg-[#111418]">
       <div className="max-w-[1200px] mx-auto">
@@ -54,27 +57,24 @@ export const OnCallView: React.FC = () => {
            </button>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <OnCallCard 
-            team="Platform SRE" 
-            primary={{name: "Sarah Chen", avatar: "https://i.pravatar.cc/150?u=sarah", until: "Oct 24, 9:00 AM"}}
-            secondary={{name: "David Kim", avatar: "https://i.pravatar.cc/150?u=david", until: "Oct 24, 9:00 AM"}}
-            nextRotation="Oct 24 (Tomorrow)"
-          />
-          <OnCallCard 
-            team="Product Engineering" 
-            primary={{name: "Mike Ross", avatar: "https://i.pravatar.cc/150?u=mike", until: "Oct 25, 9:00 AM"}}
-            secondary={{name: "Rachel Zane", avatar: "https://i.pravatar.cc/150?u=rachel", until: "Oct 25, 9:00 AM"}}
-            nextRotation="Oct 25"
-          />
-          <OnCallCard 
-            team="Data Infrastructure" 
-            primary={{name: "Jessica P", avatar: "https://i.pravatar.cc/150?u=jess", until: "Oct 26, 9:00 AM"}}
-            secondary={{name: "Louis Litt", avatar: "https://i.pravatar.cc/150?u=louis", until: "Oct 26, 9:00 AM"}}
-            nextRotation="Oct 26"
-          />
-        </div>
+        {loading ? (
+          <p className="text-gray-500">Loading schedules...</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {shifts.map(shift => (
+              <OnCallCard 
+                key={shift.id}
+                team={shift.team}
+                primary={shift.primary}
+                secondary={shift.secondary}
+                nextRotation={shift.nextRotation}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
 };
+
+export default OnCallPage;

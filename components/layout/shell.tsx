@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewState, User } from '../types';
+import { ViewState, User } from '../../lib/types';
 
 interface SidebarProps {
   currentView: ViewState;

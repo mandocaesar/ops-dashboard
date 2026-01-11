@@ -26,7 +26,7 @@ const ChatMessage = ({ author, time, content, isBot, isSelf, avatar }: any) => (
   </div>
 );
 
-export const WarRoom: React.FC = () => {
+const WarRoomPage: React.FC = () => {
   const [isRcaModalOpen, setIsRcaModalOpen] = useState(false);
   const [rcaDraft, setRcaDraft] = useState({
     rootCause: '',
@@ -328,3 +328,5 @@ export const WarRoom: React.FC = () => {
     </div>
   );
 };
+
+export default WarRoomPage;
