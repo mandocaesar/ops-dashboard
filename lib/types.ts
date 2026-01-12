@@ -36,6 +36,7 @@ export interface Service {
   latency: string;
   errorRate: string;
   uptime: string;
+  ownerTeamId: string; // Linked to OnCallShift id
 }
 
 export interface OnCallShift {

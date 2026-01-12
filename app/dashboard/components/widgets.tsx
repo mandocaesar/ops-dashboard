@@ -8,26 +8,26 @@ export const StackedSquadBar = ({ label, sev1, sev2, sev3 }: any) => {
   const p3 = total > 0 ? (sev3 / total) * 100 : 0;
 
   return (
-    <div className="grid grid-cols-[70px_1fr_20px] items-center gap-3 text-xs group">
-      <span className="font-medium text-[11px] text-gray-400 group-hover:text-white transition-colors truncate">{label}</span>
-      <div className="h-1.5 w-full bg-[#283039] rounded-sm flex overflow-hidden">
-        {sev1 > 0 && <div style={{ width: `${p1}%` }} className="h-full bg-red-500"></div>}
-        {sev2 > 0 && <div style={{ width: `${p2}%` }} className="h-full bg-orange-500"></div>}
-        {sev3 > 0 && <div style={{ width: `${p3}%` }} className="h-full bg-blue-600"></div>}
+    <div className="grid grid-cols-[75px_1fr_25px] items-center gap-4 text-xs group py-1">
+      <span className="font-semibold text-[11px] text-gray-400 group-hover:text-white transition-colors truncate">{label}</span>
+      <div className="h-2 w-full bg-[#283039] rounded-sm flex overflow-hidden shadow-inner">
+        {sev1 > 0 && <div style={{ width: `${p1}%` }} className="h-full bg-red-500 shadow-[inset_0_0_4px_rgba(0,0,0,0.2)]"></div>}
+        {sev2 > 0 && <div style={{ width: `${p2}%` }} className="h-full bg-orange-500 shadow-[inset_0_0_4px_rgba(0,0,0,0.2)]"></div>}
+        {sev3 > 0 && <div style={{ width: `${p3}%` }} className="h-full bg-blue-600 shadow-[inset_0_0_4px_rgba(0,0,0,0.2)]"></div>}
         {total === 0 && <div className="w-full h-full opacity-0"></div>}
       </div>
-      <span className="font-bold text-[11px] text-gray-500 text-right">{total}</span>
+      <span className="font-bold text-[11px] text-[#566270] text-right group-hover:text-white transition-colors">{total}</span>
     </div>
   );
 };
 
 export const ReliabilityGroup = ({ title, children }: any) => (
-  <div className="mb-1">
-    <div className="flex items-center gap-2 mb-1 px-1">
-       <span className="text-[9px] font-bold text-[#566270] uppercase tracking-wider">{title}</span>
+  <div className="mb-2">
+    <div className="flex items-center gap-2 mb-1.5 px-1">
+       <span className="text-[9px] font-bold text-[#566270] uppercase tracking-wider whitespace-nowrap">{title}</span>
        <div className="h-px bg-[#283039] flex-1"></div>
     </div>
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-0.5">
       {children}
     </div>
   </div>
@@ -57,19 +57,19 @@ export const ReliabilityRowSmall = ({ name, uptime, produced, active, resolved, 
 );
 
 export const IncidentsBySquadWidget = () => (
-  <div className="flex flex-col rounded-lg border border-[#3b4754] bg-[#1c232b] p-4">
-    <div className="flex justify-between items-start mb-3">
+  <div className="flex flex-col rounded-lg border border-[#3b4754] bg-[#1c232b] p-4 min-h-[480px] h-full shadow-lg">
+    <div className="flex justify-between items-start mb-5">
       <div>
         <h3 className="text-white text-sm font-bold uppercase tracking-wide">Incidents by Squad</h3>
         <p className="text-[#9dabb9] text-[10px] mt-0.5">Last 30 Days • Criticality Distribution</p>
       </div>
       <div className="text-right">
-        <span className="text-white text-lg font-bold">12</span>
-        <span className="text-[#9dabb9] text-[10px] ml-1 font-medium">Total</span>
+        <span className="text-white text-xl font-bold">12</span>
+        <span className="text-[#9dabb9] text-[10px] ml-1.5 font-bold uppercase tracking-tighter">Total</span>
       </div>
     </div>
     
-    <div className="flex flex-col gap-2 mb-3">
+    <div className="flex flex-col gap-1.5 mb-6">
       <StackedSquadBar label="Search" sev1={1} sev2={2} sev3={3} />
       <StackedSquadBar label="Checkout" sev1={1} sev2={1} sev3={1} />
       <StackedSquadBar label="Payments" sev1={2} sev2={0} sev3={0} />
@@ -78,29 +78,35 @@ export const IncidentsBySquadWidget = () => (
       <StackedSquadBar label="Mobile" sev1={0} sev2={0} sev3={0} />
     </div>
 
-    {/* Key Highlights */}
-    <div className="mt-auto bg-[#111418]/50 rounded border border-[#283039] p-3">
-       <div className="flex items-center gap-2 mb-2">
-         <span className="material-symbols-outlined text-[#9dabb9] text-sm">lightbulb</span>
-         <h4 className="text-[#9dabb9] text-[10px] font-bold uppercase tracking-wider">Key Highlights</h4>
+    {/* Key Highlights - Expanded to fill space */}
+    <div className="flex-1 flex flex-col bg-[#111418]/60 rounded-lg border border-[#283039] p-5 mb-4 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)]">
+       <div className="flex items-center gap-2 mb-3">
+         <span className="material-symbols-outlined text-primary text-[20px]">lightbulb</span>
+         <h4 className="text-[#9dabb9] text-[10px] font-bold uppercase tracking-widest">Key Performance Highlights</h4>
        </div>
-       <div className="space-y-2">
-         <div className="flex gap-2 items-start">
-           <div className="size-1 rounded-full bg-red-500 mt-1.5 shrink-0"></div>
-           <p className="text-[11px] text-gray-300 leading-tight">
-             <span className="text-white font-medium">Payments</span> squad accounts for <span className="text-red-400 font-medium">40%</span> of all critical incidents this week.
+       <div className="space-y-4">
+         <div className="flex gap-3 items-start">
+           <div className="size-1.5 rounded-full bg-red-500 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(239,68,68,0.5)]"></div>
+           <p className="text-[12px] text-gray-300 leading-relaxed">
+             <span className="text-white font-bold">Payments</span> squad accounts for <span className="text-red-400 font-bold">40%</span> of all critical incidents this week, primarily due to gateway latency.
            </p>
          </div>
-         <div className="flex gap-2 items-start">
-           <div className="size-1 rounded-full bg-green-500 mt-1.5 shrink-0"></div>
-           <p className="text-[11px] text-gray-300 leading-tight">
-             <span className="text-white font-medium">Platform</span> & <span className="text-white font-medium">Mobile</span> squads have had <span className="text-green-400 font-medium">0 incidents</span> in the last 14 days.
+         <div className="flex gap-3 items-start">
+           <div className="size-1.5 rounded-full bg-green-500 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+           <p className="text-[12px] text-gray-300 leading-relaxed">
+             <span className="text-white font-bold">Platform</span> & <span className="text-white font-bold">Mobile</span> squads have maintained a perfect <span className="text-green-400 font-bold">0 incident</span> record in the last 14 days.
+           </p>
+         </div>
+         <div className="flex gap-3 items-start">
+           <div className="size-1.5 rounded-full bg-blue-500 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></div>
+           <p className="text-[12px] text-gray-300 leading-relaxed">
+             <span className="text-white font-bold">Search</span> indexing performance has stabilized after the recent SEV2 resolution, with latencies down <span className="text-blue-400 font-bold">15%</span>.
            </p>
          </div>
        </div>
     </div>
 
-    <div className="flex items-center justify-end gap-3 mt-3 pt-2 border-t border-[#283039]">
+    <div className="flex items-center justify-end gap-4 pt-3 border-t border-[#283039]">
         <LegendItem color="bg-red-500" label="Critical" />
         <LegendItem color="bg-orange-500" label="High" />
         <LegendItem color="bg-blue-600" label="Moderate" />
@@ -109,8 +115,8 @@ export const IncidentsBySquadWidget = () => (
 );
 
 export const SystemReliabilityWidget = () => (
-  <div className="flex flex-col rounded-lg border border-[#3b4754] bg-[#1c232b] p-4">
-     <div className="mb-3 flex justify-between items-end">
+  <div className="flex flex-col rounded-lg border border-[#3b4754] bg-[#1c232b] p-4 min-h-[480px] h-full shadow-lg">
+     <div className="mb-4 flex justify-between items-end">
         <div>
           <h3 className="text-white text-sm font-bold uppercase tracking-wide">System Reliability</h3>
           <p className="text-[#9dabb9] text-[10px] mt-0.5">Uptime & Error Breakdown (Last 30d)</p>
@@ -122,7 +128,7 @@ export const SystemReliabilityWidget = () => (
         </div>
       </div>
       
-      <div className="flex flex-col gap-2 overflow-y-auto pr-1 h-full">
+      <div className="flex flex-col gap-1 overflow-y-auto pr-1 h-full max-h-[360px] custom-scrollbar">
         
         <ReliabilityGroup title="Application">
           <ReliabilityRowSmall name="Payments API" uptime="100%" produced={0} active={0} resolved={0} status="good" />

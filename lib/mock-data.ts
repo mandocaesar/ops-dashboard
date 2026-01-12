@@ -120,12 +120,12 @@ export const MOCK_INCIDENTS: Incident[] = [
 ];
 
 export const MOCK_SERVICES: Service[] = [
-  { id: 's1', name: "Payments API", region: "us-east-1", status: "Operational", latency: "45ms", errorRate: "0.02%", uptime: "99.99%" },
-  { id: 's2', name: "Auth Service", region: "global", status: "Operational", latency: "12ms", errorRate: "0.00%", uptime: "100%" },
-  { id: 's3', name: "Search Indexer", region: "us-west-2", status: "Degraded", latency: "850ms", errorRate: "2.4%", uptime: "99.5%" },
-  { id: 's4', name: "Frontend App", region: "global", status: "Operational", latency: "120ms", errorRate: "0.1%", uptime: "99.9%" },
-  { id: 's5', name: "Notification Svc", region: "eu-central-1", status: "Operational", latency: "65ms", errorRate: "0.01%", uptime: "99.95%" },
-  { id: 's6', name: "Inventory DB", region: "us-east-1", status: "Operational", latency: "5ms", errorRate: "0.00%", uptime: "100%" },
+  { id: 's1', name: "Payments API", region: "us-east-1", status: "Operational", latency: "45ms", errorRate: "0.02%", uptime: "99.99%", ownerTeamId: "oc1" },
+  { id: 's2', name: "Auth Service", region: "global", status: "Operational", latency: "12ms", errorRate: "0.00%", uptime: "100%", ownerTeamId: "oc1" },
+  { id: 's3', name: "Search Indexer", region: "us-west-2", status: "Degraded", latency: "850ms", errorRate: "2.4%", uptime: "99.5%", ownerTeamId: "oc2" },
+  { id: 's4', name: "Frontend App", region: "global", status: "Operational", latency: "120ms", errorRate: "0.1%", uptime: "99.9%", ownerTeamId: "oc2" },
+  { id: 's5', name: "Notification Svc", region: "eu-central-1", status: "Operational", latency: "65ms", errorRate: "0.01%", uptime: "99.95%", ownerTeamId: "oc3" },
+  { id: 's6', name: "Inventory DB", region: "us-east-1", status: "Operational", latency: "5ms", errorRate: "0.00%", uptime: "100%", ownerTeamId: "oc3" },
 ];
 
 export const MOCK_ON_CALL: OnCallShift[] = [
