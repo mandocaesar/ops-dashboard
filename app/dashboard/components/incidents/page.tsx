@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useIncidents } from '../../hooks/use-ops-data.ts';
+import { useIncidents } from '../../hooks/use-ops-data';
 
 interface IncidentsViewProps {
   onJoinWarRoom: () => void;
@@ -411,7 +411,7 @@ const IncidentsPage: React.FC<IncidentsViewProps> = ({ onJoinWarRoom }) => {
         </div>
       )}
 
-      {/* RCA Draft Modal */}
+      {/* RCA Draft Modal (Reused from Dashboard but kept local for now for simplicity of this refactor) */}
       {isRcaModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4 animate-in fade-in duration-200">
           <div className="bg-[#1c232b] border border-[#3b4754] rounded-lg shadow-2xl w-full max-w-2xl overflow-hidden animate-in zoom-in-95 duration-200">

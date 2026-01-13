@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { ViewState, User } from './lib/types';
-import { Sidebar, Header } from './components/layout/shell';
+import { ViewState, User } from './lib/types.ts';
+import { Sidebar, Header } from './components/layout/shell.tsx';
 
 // Route Imports (Simulating Next.js pages)
-import DashboardPage from './app/dashboard/page';
-import WarRoomPage from './app/war-room/page';
-import IncidentsPage from './app/incidents/page';
-import ServicesPage from './app/services/page';
-import OnCallPage from './app/on-call/page';
-import SettingsPage from './app/settings/page';
+import DashboardPage from './app/dashboard/page.tsx';
+import WarRoomPage from './app/war-room/page.tsx';
+import IncidentsPage from './app/incidents/page.tsx';
+import ServicesPage from './app/services/page.tsx';
+import OnCallPage from './app/on-call/page.tsx';
+import SettingsPage from './app/settings/page.tsx';
 
 const MOCK_USER: User = {
   id: 'u1',

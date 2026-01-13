@@ -1,5 +1,5 @@
 import React from 'react';
-import { LegendItem } from '../../../components/ui/shared';
+import { LegendItem } from '../../../components/ui/shared.tsx';
 
 export const StackedSquadBar = ({ label, sev1, sev2, sev3 }: any) => {
   const total = sev1 + sev2 + sev3;
@@ -78,7 +78,7 @@ export const IncidentsBySquadWidget = () => (
       <StackedSquadBar label="Mobile" sev1={0} sev2={0} sev3={0} />
     </div>
 
-    {/* Key Highlights - Expanded to fill space */}
+    {/* Key Highlights - Reverted to dark themed box */}
     <div className="flex-1 flex flex-col bg-[#111418]/60 rounded-lg border border-[#283039] p-5 mb-4 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)]">
        <div className="flex items-center gap-2 mb-3">
          <span className="material-symbols-outlined text-primary text-[20px]">lightbulb</span>

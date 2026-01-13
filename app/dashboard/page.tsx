@@ -1,7 +1,7 @@
 import React from 'react';
-import { useDashboardMetrics, useIncidents } from '../../hooks/use-ops-data';
-import { FilterSelect, MetricCard, IncidentRow } from '../../components/ui/shared';
-import { IncidentsBySquadWidget, SystemReliabilityWidget } from './components/widgets';
+import { useDashboardMetrics, useIncidents } from '../../hooks/use-ops-data.ts';
+import { FilterSelect, MetricCard, IncidentRow } from '../../components/ui/shared.tsx';
+import { IncidentsBySquadWidget, SystemReliabilityWidget } from './components/widgets.tsx';
 
 interface DashboardViewProps {
   onJoinWarRoom: () => void;
